@@ -483,9 +483,9 @@ impl WindowsResource {
     #[cfg(target_env = "msvc")]
     fn compile_with_toolkit<'a>(&self, input: &'a str, output_dir: &'a str) -> io::Result<()> {
         let rc_exe = if cfg!(target_arch = "x86_64") {
-            PathBuf::from(&self.toolkit_path).join("bin\\x64\\rc.exe")
+            PathBuf::from(&self.toolkit_path).join("bin\\10.0.15063.0\\x64\\rc.exe")
         } else {
-            PathBuf::from(&self.toolkit_path).join("bin\\x86\\rc.exe")
+            PathBuf::from(&self.toolkit_path).join("bin\\10.0.15063.0\\x86\\rc.exe")
         };
         // let inc_win = PathBuf::from(&self.toolkit_path).join("Include\\10.0.10586.0\\um");
         // let inc_shared = PathBuf::from(&self.toolkit_path).join("Include\\10.0.10586.0\\shared");
@@ -525,12 +525,12 @@ fn get_sdk() -> io::Result<Vec<String>> {
                 .skip(line.find("REG_SZ").unwrap() + 6)
                 .skip_while(|c| c.is_whitespace())
                 .collect();
-            
+
             let mut p = PathBuf::from(&kit);
             if cfg!(target_arch = "x86_64") {
-                p.push(r"bin\x64\rc.exe")
+                p.push(r"bin\10.0.15063.0\x64\rc.exe")
             } else {
-                p.push(r"bin\x86\rc.exe");
+                p.push(r"bin\10.0.15063.0\x86\rc.exe");
             }
 
             if p.exists() {
